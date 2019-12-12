@@ -1,12 +1,54 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+function OnButton(props) {
+    return(
+        <button onClick={props.onClick}>
+            ON
+        </button>
+    );
+}
+function OffButton(props) {
+    return(
+        <button onClick={props.onClick}>
+            OFF
+        </button>
+    );
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class Toggle extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {isToggleOn: true};
+      this.handleClick = this.handleClick.bind(this);
+      
+    }
+  
+    handleClick() {
+      this.setState(state =>({
+          isToggleOn: !state.isToggleOn
+      }));
+    }
+    render() {
+        const isToggleOn = this.state.isToggleOn;
+        let button;
+        if(isToggleOn) {
+            button = <OnButton onClick={this.handleClick}/>
+        } else {
+            button = <OffButton onClick={event=> window.location.href = '/nextpage'}/>
+        }
+        return (
+            <div>
+              <h1>{isToggleOn}</h1>
+              {button}
+            </div>
+        );
+    }
+}
+  
+  ReactDOM.render(
+    <Toggle />,
+    document.getElementById('root')
+  );
+    
+  
