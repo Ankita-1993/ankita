@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 function OnButton(props) {
     return(
         <button onClick={props.onClick}>
-            ON
+            On
         </button>
     );
 }
 function OffButton(props) {
     return(
         <button onClick={props.onClick}>
-            OFF
+            Off
         </button>
     );
 }
